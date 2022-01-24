@@ -4,6 +4,9 @@ const {
   getWebhook,
 } = require("../controllers/facebookController");
 
+router.get("/", (req, res) => {
+  return "Hello World !";
+});
 router.post("/webhook", postWebhook);
 router.get("/webhook", getWebhook);
 
