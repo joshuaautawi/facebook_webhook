@@ -5,7 +5,9 @@ const postWebhook = async (req, res) => {
   let body = req.body;
   if (body.object === "page") {
     body.entry.forEach(function (entry) {
+        console.log(`-------------`)
       console.log(entry);
+      console.log(`-------------`)
       // Gets the body of the webhook event
       let webhook_event = entry.messaging[0];
       console.log(webhook_event);
@@ -51,6 +53,9 @@ const getWebhook = async (req, res) => {
 function handleMessage(sender_psid, received_message) {
   let response;
 
+  console.log(`-------------`)
+  console.log(received_message)
+  console.log(`-------------`)
   // Checks if the message contains text
   if (received_message.text) {
     // Create the payload for a basic text message, which
