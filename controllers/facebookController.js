@@ -5,6 +5,7 @@ const postWebhook = async (req, res) => {
   let body = req.body;
   if (body.object === "page") {
     body.entry.forEach(function (entry) {
+      console.log(entry);
       // Gets the body of the webhook event
       let webhook_event = entry.messaging[0];
       console.log(webhook_event);
@@ -16,8 +17,10 @@ const postWebhook = async (req, res) => {
       // Check if the event is a message or postback and
       // pass the event to the appropriate handler function
       if (webhook_event.message) {
+        console.log("test");
         handleMessage(sender_psid, webhook_event.message);
       } else if (webhook_event.postback) {
+        console.log("reply");
         handlePostback(sender_psid, webhook_event.postback);
       }
     });
@@ -54,6 +57,7 @@ function handleMessage(sender_psid, received_message) {
     // will be added to the body of our request to the Send API
     response = {
       text: `Hi there, What is your name ?`,
+      payload: "yes",
     };
   }
   callSendAPI(sender_psid, response);
