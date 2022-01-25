@@ -81,7 +81,7 @@ function handleMessage(sender_psid, message) {
   });
   if (entitilyChosen == "") {
   } else {
-    if (entitilyChosen == "greeting") {
+    if (entitilyChosen == "greetings") {
       callSendAPI(sender_psid, "Hi there ,When is your birthday? ");
     } else if (entitilyChosen == "thanks") {
       callSendAPI(sender_psid, "Your welcome");
