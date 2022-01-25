@@ -56,13 +56,11 @@ function handleMessage(sender_psid, received_message) {
   console.log(received_message.reply_to);
   // Checks if the message contains text\
   const y = /yes|yeah|yup/gi;
-  const n = /no|nah/gi
+  const n = /no|nah/gi;
   if (received_message.text && received_message.reply_to) {
   } else if (received_message.text && received_message.reply_to) {
   } else if (received_message.text) {
-    // Create the payload for a basic text message, which
-    // will be added to the body of our request to the Send API
-
+    console.log('kepanggil')
     response = {
       text: `Hi there, What is your name ?`,
     };
