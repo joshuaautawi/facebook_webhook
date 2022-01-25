@@ -65,7 +65,7 @@ function handleMessage(sender_psid, received_message) {
       text: `Hi there, What is your name ?`,
     };
   }
-  callSendAPI(sender_psid, response);
+  return callSendAPI(sender_psid, response);
 }
 // function firstTrait(nlp, name) {
 //   return nlp && nlp.entities && nlp.traits[name] && nlp.traits[name][0];
