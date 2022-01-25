@@ -46,39 +46,38 @@ const getWebhook = async (req, res) => {
   }
 };
 
-// Handles messages events
-// function handleMessage(sender_psid, received_message) {
-//   let response;
+function handleMessage(sender_psid, received_message) {
+  let response;
 
-//   console.log(`-------------`);
-//   console.log(received_message);
-//   console.log(`-------------`);
-//   console.log(received_message.reply_to);
-//   // Checks if the message contains text
-//   if (received_message.text) {
-//     // Create the payload for a basic text message, which
-//     // will be added to the body of our request to the Send API
+  console.log(`-------------`);
+  console.log(received_message);
+  console.log(`-------------`);
+  console.log(received_message.reply_to);
+  // Checks if the message contains text
+  if (received_message.text) {
+    // Create the payload for a basic text message, which
+    // will be added to the body of our request to the Send API
 
-//     response = {
-//       text: `Hi there, What is your name ?`,
-//     };
-//   }
-//   callSendAPI(sender_psid, response);
-// }
-function firstTrait(nlp, name) {
-  return nlp && nlp.entities && nlp.traits[name] && nlp.traits[name][0];
-}
-
-function handleMessage(sender_psid, message) {
-  // check greeting is here and is confident
-  const greeting = firstTrait(message.nlp, "wit$greetings");
-  if (greeting && greeting.confidence > 0.8) {
-    callSendAPI(sender_psid, "Hi there ");
-  } else {
-    // default logic
-    callSendAPI(sender_psid, "default ");
+    response = {
+      text: `Hi there, What is your name ?`,
+    };
   }
+  callSendAPI(sender_psid, response);
 }
+// function firstTrait(nlp, name) {
+//   return nlp && nlp.entities && nlp.traits[name] && nlp.traits[name][0];
+// }
+
+// function handleMessage(sender_psid, message) {
+//   // check greeting is here and is confident
+//   const greeting = firstTrait(message.nlp, "wit$greetings");
+//   if (greeting && greeting.confidence > 0.8) {
+//     callSendAPI(sender_psid, "Hi there, What is your name ?");
+//   } else {
+//     // default logic
+//     callSendAPI(sender_psid, "When is your birthday? ");
+//   }
+// }
 function handlePostback(sender_psid, received_postback) {
   let response;
   let payload = received_postback.payload;
