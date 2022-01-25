@@ -84,11 +84,11 @@ function handleMessage(sender_psid, message) {
   });
   if (entitilyChosen == "") {
   } else {
-    if (entitilyChosen == "greetings") {
+    if (entitilyChosen === "greetings") {
       callSendAPI(sender_psid, "Hi there ,When is your birthday? ");
-    } else if (entitilyChosen == "thanks") {
+    } else if (entitilyChosen === "thanks") {
       callSendAPI(sender_psid, "Your welcome");
-    } else if (entitilyChosen == "datetime") {
+    } else if (entitilyChosen === "datetime") {
       callSendAPI(
         sender_psid,
         "Do you wants to know how many days till his next birthday? "
