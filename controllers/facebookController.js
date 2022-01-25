@@ -1,4 +1,5 @@
 require("dotenv").config();
+const { text } = require("body-parser");
 const path = require("path");
 const request = require("request");
 const postWebhook = async (req, res) => {
@@ -97,7 +98,8 @@ function callSendAPI(sender_psid, response) {
     recipient: {
       id: sender_psid,
     },
-    message: { text: response },
+    // message: { text: response },
+    message: response,
   };
 
   // Send the HTTP request to the Messenger Platform
