@@ -73,35 +73,15 @@ function firstEntity(nlp, name) {
 }
 
 function handleMessage(sender_psid, message) {
+  console.log(message)
   // check greeting is here and is confident
-  const entitiesArr = ["greetings", "thanks", "datetime"];
-  let entitilyChosen = "";
-  entitiesArr.forEach((name) => {
-    let entity = firstEntity(message.nlp, name);
-    if (entity && entity.confidence > 0.8) {
-      entitilyChosen = name;
-    }
-  });
-  if (entitilyChosen == "") {
+  const greeting = firstTrait(message.nlp, "wit$greetings");
+  const greeting = firstTrait(message.nlp, "wit$greetings");
+  if (greeting && greeting.confidence > 0.8) {
+    callSendAPI(sender_psid, "Hi there, What is your name ?");
   } else {
-    if (entitilyChosen === "greetings") {
-      callSendAPI(sender_psid, "Hi there ,When is your birthday? ");
-    } else if (entitilyChosen === "thanks") {
-      callSendAPI(sender_psid, "Your welcome");
-    } else if (entitilyChosen === "datetime") {
-      callSendAPI(
-        sender_psid,
-        "Do you wants to know how many days till his next birthday? "
-      );
-    }
+    callSendAPI(sender_psid, "When is your birthday? ");
   }
-  // const greeting = firstTrait(message.nlp, "wit$greetings");
-  // if (greeting && greeting.confidence > 0.8) {
-  //   callSendAPI(sender_psid, "Hi there, What is your name ?");
-  // } else {
-  //   // default logic
-  //   callSendAPI(sender_psid, "When is your birthday? ");
-  // }
 }
 function handlePostback(sender_psid, received_postback) {
   let response;
