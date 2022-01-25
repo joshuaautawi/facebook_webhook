@@ -65,12 +65,10 @@ const getWebhook = async (req, res) => {
 //   }
 //   callSendAPI(sender_psid, response);
 // }
-// function firstTrait(nlp, name) {
-//   return nlp && nlp.entities && nlp.traits[name] && nlp.traits[name][0];
-// }
-function firstEntity(nlp, name) {
-  return nlp && nlp.entities && nlp.entities[name] && nlp.entities[name][0];
+function firstTrait(nlp, name) {
+  return nlp && nlp.entities && nlp.traits[name] && nlp.traits[name][0];
 }
+
 
 function handleMessage(sender_psid, message) {
   console.log(message)
