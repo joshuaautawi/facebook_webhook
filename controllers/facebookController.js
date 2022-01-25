@@ -65,9 +65,9 @@ const getWebhook = async (req, res) => {
 //   }
 //   callSendAPI(sender_psid, response);
 // }
-// function firstTrait(nlp, name) {
-//   return nlp && nlp.entities && nlp.traits[name] && nlp.traits[name][0];
-// }
+function firstTrait(nlp, name) {
+  return nlp && nlp.entities && nlp.traits[name] && nlp.traits[name][0];
+}
 function firstEntity(nlp, name) {
   return nlp && nlp.entities && nlp.entities[name] && nlp.entities[name][0];
 }
@@ -77,8 +77,8 @@ function handleMessage(sender_psid, message) {
   console.log(message);
   console.log(`--------------------------`);
   // check greeting is here and is confident
-  const greeting = firstEntity(message.nlp, "greetings");
-  const date = firstEntity(message.nlp, "datetime");
+  const greeting = firstTrait(message.nlp, "wit$greetings");
+  const date = firstTrait(message.nlp, "wit$datetime:$datetime");
   if (greeting && greeting.confidence > 0.8) {
     callSendAPI(sender_psid, "Hi there! , What is your first name ?");
   } else if (date && date.confidence > 0.8) {
