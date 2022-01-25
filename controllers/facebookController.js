@@ -69,16 +69,18 @@ function firstTrait(nlp, name) {
   return nlp && nlp.entities && nlp.traits[name] && nlp.traits[name][0];
 }
 
-
 function handleMessage(sender_psid, message) {
-  console.log(message)
+  console.log(`--------------------------`)
+  console.log(message);
+  console.log(`--------------------------`)
   // check greeting is here and is confident
   const greeting = firstTrait(message.nlp, "wit$greetings");
 
   if (greeting && greeting.confidence > 0.8) {
-    callSendAPI(sender_psid, "Hi there, What is your name ?");
+    sendResponse("Hi there! , What is your first name ?");
   } else {
-    callSendAPI(sender_psid, "When is your birthday? ");
+    // default logic
+    sendResponse("When is your birthday?");
   }
 }
 function handlePostback(sender_psid, received_postback) {
