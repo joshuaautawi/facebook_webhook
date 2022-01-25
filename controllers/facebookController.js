@@ -65,8 +65,11 @@ const getWebhook = async (req, res) => {
 //   }
 //   callSendAPI(sender_psid, response);
 // }
-function firstTrait(nlp, name) {
-  return nlp && nlp.entities && nlp.traits[name] && nlp.traits[name][0];
+// function firstTrait(nlp, name) {
+//   return nlp && nlp.entities && nlp.traits[name] && nlp.traits[name][0];
+// }
+function firstEntity(nlp, name) {
+  return nlp && nlp.entities && nlp.entities[name] && nlp.entities[name][0];
 }
 
 function handleMessage(sender_psid, message) {
@@ -74,7 +77,7 @@ function handleMessage(sender_psid, message) {
   console.log(message);
   console.log(`--------------------------`);
   // check greeting is here and is confident
-  const greeting = firstTrait(message.nlp, "greetings");
+  const greeting = firstEntity(message.nlp, "greetings");
 
   if (greeting && greeting.confidence > 0.8) {
     callSendAPI(sender_psid, "Hi there! , What is your first name ?");
@@ -103,7 +106,7 @@ function callSendAPI(sender_psid, response) {
       id: sender_psid,
     },
     // message: { text: response },
-    message: response,
+    message: { text: response },
   };
 
   // Send the HTTP request to the Messenger Platform
