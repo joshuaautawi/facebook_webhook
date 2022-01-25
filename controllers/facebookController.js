@@ -78,9 +78,14 @@ function handleMessage(sender_psid, message) {
   console.log(`--------------------------`);
   // check greeting is here and is confident
   const greeting = firstEntity(message.nlp, "greetings");
-
+  const date = firstEntity(message.nlp, "datetime");
   if (greeting && greeting.confidence > 0.8) {
     callSendAPI(sender_psid, "Hi there! , What is your first name ?");
+  } else if (date && date.confidence > 0.8) {
+    callSendAPI(
+      sender_psid,
+      "Do you  wants to know how many days till his next birthday."
+    );
   } else {
     // default logic
     callSendAPI(sender_psid, "When is your birthday?");
