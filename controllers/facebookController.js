@@ -65,8 +65,11 @@ const getWebhook = async (req, res) => {
 //   }
 //   callSendAPI(sender_psid, response);
 // }
-function firstTrait(nlp, name) {
-  return nlp && nlp.entities && nlp.traits[name] && nlp.traits[name][0];
+// function firstTrait(nlp, name) {
+//   return nlp && nlp.entities && nlp.traits[name] && nlp.traits[name][0];
+// }
+function firstEntity(nlp, name) {
+  return nlp && nlp.entities && nlp.entities[name] && nlp.entities[name][0];
 }
 
 function handleMessage(sender_psid, message) {
@@ -74,7 +77,7 @@ function handleMessage(sender_psid, message) {
   const entitiesArr = ["greetings", "thanks", "datetime"];
   let entitilyChosen = "";
   entitiesArr.forEach((name) => {
-    let entity = firstTrait(message.nlp, name);
+    let entity = firstEntity(message.nlp, name);
     if (entity && entity.confidence > 0.8) {
       entitilyChosen = name;
     }
