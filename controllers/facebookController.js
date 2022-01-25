@@ -74,7 +74,7 @@ function handleMessage(sender_psid, message) {
   const entitiesArr = ["greeting", "thanks", "date"];
   let entitilyChosen = "";
   entitiesArr.forEach((name) => {
-    let entity = firstEntity(message.nlp, name);
+    let entity = firstTrait(message.nlp, name);
     if (entity && entity.confidence > 0.8) {
       entitilyChosen = name;
     }
