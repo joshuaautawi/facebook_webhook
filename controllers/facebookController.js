@@ -49,37 +49,28 @@ const getWebhook = async (req, res) => {
 
 function handleMessage(sender_psid, received_message) {
   let response;
-
-  console.log(`-------------`);
-  console.log(received_message);
-  console.log(`-------------`);
-  console.log(received_message.reply_to);
-  // Checks if the message contains text\
   const y = /yes|yeah|yup/gi;
   const n = /no|nah/gi;
   if (received_message.text && received_message.reply_to) {
   } else if (received_message.text && received_message.reply_to) {
   } else if (received_message.text) {
-    console.log('kepanggil')
+    console.log("kepanggil");
     response = {
       text: `Hi there, What is your name ?`,
-      type : "postback"
     };
   }
   return callSendAPI(sender_psid, response);
 }
+
 // function firstTrait(nlp, name) {
 //   return nlp && nlp.entities && nlp.traits[name] && nlp.traits[name][0];
 // }
+
 // function firstEntity(nlp, name) {
 //   return nlp && nlp.entities && nlp.entities[name] && nlp.entities[name][0];
 // }
 
 // function handleMessage(sender_psid, message) {
-//   console.log(`--------------------------`);
-//   console.log(message);
-//   console.log(`--------------------------`);
-//   // check greeting is here and is confident
 //   const greeting = firstTrait(message.nlp, "greetings");
 //   const date = firstTrait(message.nlp, "wit$datetime:$datetime");
 //   const greeting = firstTrait(message.nlp, "wit$greetings");
@@ -89,6 +80,7 @@ function handleMessage(sender_psid, received_message) {
 //     callSendAPI(sender_psid, "When is your birthday?");
 //   }
 // }
+
 function handlePostback(sender_psid, received_postback) {
   let response;
   let payload = received_postback.payload;
@@ -109,7 +101,7 @@ function callSendAPI(sender_psid, response) {
       id: sender_psid,
     },
     // message: { text: response },
-    message: response
+    message: response,
   };
 
   // Send the HTTP request to the Messenger Platform
