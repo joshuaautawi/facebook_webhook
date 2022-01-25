@@ -77,7 +77,7 @@ function handleMessage(sender_psid, message) {
   console.log(message);
   console.log(`--------------------------`);
   // check greeting is here and is confident
-  const greeting = firstTrait(message.nlp, "wit$greetings");
+  const greeting = firstTrait(message.nlp, "greetings");
   const date = firstTrait(message.nlp, "wit$datetime:$datetime");
   if (greeting && greeting.confidence > 0.8) {
     callSendAPI(sender_psid, "Hi there! , What is your first name ?");
