@@ -63,6 +63,7 @@ function handleMessage(sender_psid, received_message) {
     console.log('kepanggil')
     response = {
       text: `Hi there, What is your name ?`,
+      type : "postback"
     };
   }
   return callSendAPI(sender_psid, response);
