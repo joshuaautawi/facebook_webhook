@@ -71,7 +71,7 @@ function firstTrait(nlp, name) {
 
 function handleMessage(sender_psid, message) {
   // check greeting is here and is confident
-  const entitiesArr = ["greeting", "thanks", "date"];
+  const entitiesArr = ["greetings", "thanks", "datetime"];
   let entitilyChosen = "";
   entitiesArr.forEach((name) => {
     let entity = firstTrait(message.nlp, name);
